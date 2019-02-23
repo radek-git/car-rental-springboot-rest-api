@@ -96,7 +96,8 @@ public class UserService {
 
 
     public List<RentalDTO> rentalDTOList(@PathVariable Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
 
         return convertToRentalsDTO(user.getRentals());
     }
