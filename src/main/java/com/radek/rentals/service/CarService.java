@@ -18,11 +18,5 @@ public class CarService {
     }
 
 
-    public Car getById(Long id) {
-        return carRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiego"));
-    }
 
-    public List<Car> findAll() {
-        return carRepository.findAll();
-    }
 }
