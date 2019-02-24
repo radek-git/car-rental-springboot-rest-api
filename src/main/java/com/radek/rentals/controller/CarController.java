@@ -1,5 +1,6 @@
 package com.radek.rentals.controller;
 
+import com.radek.rentals.dto.CarDTO;
 import com.radek.rentals.entity.Car;
 import com.radek.rentals.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class CarController {
     }
 
     @GetMapping("/all")
-    public List<Car> findAll() {
+    public List<CarDTO> findAll() {
         return carService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Car findById(@PathVariable Long id) {
-        return carService.getById(id);
+    public CarDTO findById(@PathVariable Long id) {
+        return carService.findById(id);
     }
 
 
