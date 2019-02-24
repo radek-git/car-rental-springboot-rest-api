@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ModelDTO {
 
-    private Long id;
     private String name;
 }
