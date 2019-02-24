@@ -45,5 +45,9 @@ public class ModelService {
         return convertModelToDTO(model);
     }
 
+    public void deleteById(Long id) {
+        modelRepository.deleteById(id);
+    }
+
 
 }

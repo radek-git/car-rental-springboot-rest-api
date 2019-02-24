@@ -55,4 +55,8 @@ public class BrandService {
 
         return convertBrandToDTO(brand);
     }
+
+    public void deleteById(Long id) {
+        brandRepository.deleteById(id);
+    }
 }

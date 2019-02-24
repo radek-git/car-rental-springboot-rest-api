@@ -1,8 +1,8 @@
 package com.radek.rentals.service;
 
-import com.radek.dupa.dto.TypeDTO;
-import com.radek.dupa.entity.Type;
-import com.radek.dupa.repository.TypeRepository;
+import com.radek.rentals.dto.TypeDTO;
+import com.radek.rentals.entity.Type;
+import com.radek.rentals.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
