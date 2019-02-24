@@ -59,4 +59,8 @@ public class BrandService {
     public void deleteById(Long id) {
         brandRepository.deleteById(id);
     }
+
+    public BrandDTO save(Brand brand) {
+        return convertBrandToDTO(brandRepository.save(brand));
+    }
 }

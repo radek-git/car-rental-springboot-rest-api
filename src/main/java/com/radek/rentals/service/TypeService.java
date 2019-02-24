@@ -40,6 +40,10 @@ public class TypeService {
         return convertTypeToDTO(type);
     }
 
+    public TypeDTO save(Type type) {
+        return convertTypeToDTO(typeRepository.save(type));
+    }
+
 
 
 }

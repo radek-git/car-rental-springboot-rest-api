@@ -1,6 +1,8 @@
 package com.radek.rentals.service;
 
+import com.radek.rentals.dto.BrandDTO;
 import com.radek.rentals.dto.ModelDTO;
+import com.radek.rentals.entity.Brand;
 import com.radek.rentals.entity.Model;
 import com.radek.rentals.repository.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,10 @@ public class ModelService {
 
     public void deleteById(Long id) {
         modelRepository.deleteById(id);
+    }
+
+    public ModelDTO save(Model model) {
+        return convertModelToDTO(modelRepository.save(model));
     }
 
 
