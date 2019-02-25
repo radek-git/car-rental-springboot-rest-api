@@ -52,7 +52,7 @@ public class UserController {
 
     @GetMapping("/{id}/rentals")
     public List<RentalDTO> rentalsById(@PathVariable Long id) {
-        return userService.rentalDTOList(id);
+        return userService.rentalDTOListByUserId(id);
     }
 
 }
