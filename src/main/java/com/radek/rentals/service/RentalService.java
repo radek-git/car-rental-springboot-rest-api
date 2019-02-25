@@ -10,6 +10,7 @@ import com.radek.rentals.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,11 +62,10 @@ public class RentalService {
     }
 
 
-//    public RentalDTO findTotalPriceMoreThan(BigDecimal totalPrice) {
-//        Rental rental = rentalRepository.findRentalByTotalPriceLessThan(totalPrice).orElseThrow(() -> new RuntimeException("Brak operacji"));
-//
-//        return convertRentalToDTO(rental);
-//    }
+    public List<RentalDTO> findTotalPriceMoreThan(BigDecimal totalPrice) {
+        List<Rental> rentals = rentalRepository.findRentalByTotalPriceLessThan(totalPrice);
+        return convertRentalsToDTO(rentals);
+    }
 
 
     public void deleteById(Long id) {

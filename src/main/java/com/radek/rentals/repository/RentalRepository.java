@@ -12,5 +12,6 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 
 
     List<Rental> findRentalByTotalPriceLessThan(BigDecimal totalPrice);
+    List<Rental> findByUserAgeLessThan(int age);
 }
 
