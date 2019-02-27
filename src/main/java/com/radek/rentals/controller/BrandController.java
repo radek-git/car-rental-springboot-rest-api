@@ -34,5 +34,16 @@ public class BrandController {
         brandService.deleteById(id);
     }
 
+    @GetMapping("/startswith/{letter}")
+    public List<BrandDTO> findByFirstLetter(@PathVariable Character letter) {
+        letter = Character.toUpperCase(letter);
+        return brandService.findByFirstLetter(letter);
+    }
+
+    @GetMapping("/endswith/{letter}")
+    public BrandDTO findFirstEndingWith(@PathVariable Character letter) {
+        return brandService.findFirstEndingWith(letter);
+    }
+
 
 }

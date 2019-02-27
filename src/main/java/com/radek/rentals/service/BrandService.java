@@ -63,4 +63,15 @@ public class BrandService {
     public BrandDTO save(Brand brand) {
         return convertBrandToDTO(brandRepository.save(brand));
     }
+
+    public List<BrandDTO> findByFirstLetter(Character a) {
+        return convertBrandListToDTO(brandRepository.findByNameStartingWith(a));
+    }
+
+    public BrandDTO findFirstEndingWith(Character letter) {
+        Brand brand = brandRepository.findFirstByNameEndingWith(letter).orElseThrow(() -> new RuntimeException("nie ma"));
+        return convertBrandToDTO(brand);
+    }
+
+
 }
