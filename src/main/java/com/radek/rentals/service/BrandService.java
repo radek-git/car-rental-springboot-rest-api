@@ -68,6 +68,8 @@ public class BrandService {
         return convertBrandListToDTO(brandRepository.findByNameStartingWith(a));
     }
 
+
+
     public BrandDTO findFirstEndingWith(Character letter) {
         Brand brand = brandRepository.findFirstByNameEndingWith(letter).orElseThrow(() -> new RuntimeException("nie ma"));
         return convertBrandToDTO(brand);
