@@ -51,11 +51,11 @@ public class RentalController {
         return rentalService.saveRentalDTO(rentalDTO);
     }
 
-    @GetMapping("/all")
-    public List<Rental> get() {
-//        return rentalRepository.findAll();
-        return rentalRepository.findByUserAgeLessThan(30);
-    }
+//    @GetMapping("/all")
+//    public List<Rental> get() {
+////        return rentalRepository.findAll();
+//        return rentalRepository.findByUserAgeLessThan(30);
+//    }
 
 
 }
