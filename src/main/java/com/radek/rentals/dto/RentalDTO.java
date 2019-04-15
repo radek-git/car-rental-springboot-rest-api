@@ -1,6 +1,5 @@
 package com.radek.rentals.dto;
 
-import com.radek.rentals.entity.Car;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

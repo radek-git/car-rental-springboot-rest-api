@@ -28,7 +28,7 @@ public class ModelController {
     }
 
     @GetMapping("/all/{letter}")
-    public ModelDTO findByLetter (@PathVariable Character letter){
+    public ModelDTO findByLetter(@PathVariable Character letter) {
         return modelService.findModelByLetter(letter);
     }
 

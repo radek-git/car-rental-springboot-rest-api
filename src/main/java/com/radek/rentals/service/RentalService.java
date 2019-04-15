@@ -30,11 +30,6 @@ public class RentalService {
     }
 
 
-
-
-
-
-
     private RentalDTO convertRentalToDTO(Rental rental) {
         return new RentalDTO(
                 rental.getId(),

@@ -23,8 +23,6 @@ public class TypeController {
     }
 
 
-
-
     @GetMapping("/all")
     public List<TypeDTO> findAll() {
         return typeService.findAll();

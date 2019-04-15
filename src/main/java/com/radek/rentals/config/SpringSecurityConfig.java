@@ -1,6 +1,7 @@
 package com.radek.rentals.config;
 
 import com.radek.rentals.AuthEntryPoint;
+import com.radek.rentals.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,30 +16,38 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
     private AuthEntryPoint authEntryPoint;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    public SpringSecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder,
-                                AuthEntryPoint authEntryPoint) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    public SpringSecurityConfig(AuthEntryPoint authEntryPoint, CustomUserDetailsService customUserDetailsService) {
         this.authEntryPoint = authEntryPoint;
+        this.customUserDetailsService = customUserDetailsService;
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+        http
+                .csrf()
+                .disable()
+                .headers()
+                .frameOptions()
+                .disable()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/users/**").hasAnyRole("ADMIN")
-                .antMatchers("/rentals/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/users/**").hasAuthority("ADMIN")
+                .antMatchers("/rentals/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/h2console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .authenticationEntryPoint(authEntryPoint)
                 .and()
-                .logout().permitAll();
+                .logout()
+                .permitAll();
 
 
 //        http.authorizeRequests()
@@ -50,12 +59,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(bCryptPasswordEncoder.encode("pass")).roles("ADMIN")
-                .and()
-                .withUser("user").password(bCryptPasswordEncoder.encode("pass")).roles("USER")
-                .and()
-                .passwordEncoder(bCryptPasswordEncoder);
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN")
+//                .and()
+//                .withUser("user").password(passwordEncoder().encode("pass")).roles("USER")
+//                .and()
+//                .passwordEncoder(passwordEncoder());
+
+        auth.userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean

@@ -24,7 +24,6 @@ public class RentalController {
     }
 
 
-
     @GetMapping("/all")
     public List<RentalDTO> getAllRentals() {
         return rentalService.findall();
@@ -36,7 +35,7 @@ public class RentalController {
     }
 
     @GetMapping("/prices/{price}")
-    public List<RentalDTO> findPriceMoreThan (@PathVariable BigDecimal price) {
+    public List<RentalDTO> findPriceMoreThan(@PathVariable BigDecimal price) {
         return rentalService.findTotalPriceMoreThan(price);
     }
 

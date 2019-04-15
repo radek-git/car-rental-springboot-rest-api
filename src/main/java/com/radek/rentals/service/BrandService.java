@@ -21,8 +21,7 @@ public class BrandService {
 
 
     public BrandDTO convertBrandToDTO(Brand brand) {
-        return new BrandDTO(
-                brand.getName()
+        return new BrandDTO(brand.getName()
         );
     }
 
@@ -30,8 +29,6 @@ public class BrandService {
     public List<BrandDTO> convertBrandListToDTO(List<Brand> brands) {
         return brands.stream().map(this::convertBrandToDTO).collect(Collectors.toList());
     }
-
-
 
 
     public List<BrandDTO> findAll() {
@@ -67,7 +64,6 @@ public class BrandService {
     public List<BrandDTO> findByFirstLetter(Character a) {
         return convertBrandListToDTO(brandRepository.findByNameStartingWith(a));
     }
-
 
 
     public BrandDTO findFirstEndingWith(Character letter) {
